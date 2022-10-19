@@ -3,7 +3,7 @@ import { addScore, displayScore } from './modules/add-display.js';
 
 const main = () => {
   let scoresList = [];
-
+  const refreshBtn = document.querySelector('.btn-refresh');
   const nameInput = document.querySelector('#input-name');
   const scoreInput = document.querySelector('#input-score');
   const submitBtn = document.querySelector('.btn-submit');
@@ -20,5 +20,9 @@ const main = () => {
     scoreInput.value = null;
   });
   displayScore(scoresList);
+  refreshBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.reload();
+  });
 };
 main();
