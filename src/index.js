@@ -1,28 +1,22 @@
 import './style.css';
-import { addScore, displayScore } from './modules/add-display.js';
+import {
+  createGame, refreshScores, submitScore, displayScore,
+} from './modules/add-display.js';
+import { getGames } from './modules/Game.js';
 
 const main = () => {
+  const gameId = getGames();
   let scoresList = [];
-  const refreshBtn = document.querySelector('.btn-refresh');
-  const nameInput = document.querySelector('#input-name');
-  const scoreInput = document.querySelector('#input-score');
-  const submitBtn = document.querySelector('.btn-submit');
-  if (localStorage.getItem('scores') === null) {
-    scoresList.push({ id: 0, name: 'tati', score: '30' });
-    localStorage.setItem('scores', JSON.stringify(scoresList));
+
+  if (localStorage.getItem('scorelist') === null) {
+    localStorage.setItem('scorelist', JSON.stringify(scoresList));
   } else {
-    scoresList = JSON.parse(localStorage.getItem('scores'));
+    scoresList = JSON.parse(localStorage.getItem('scorelist'));
   }
-  submitBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    addScore(nameInput.value, scoreInput.value, scoresList);
-    nameInput.value = null;
-    scoreInput.value = null;
-  });
+
+  createGame();
+  submitScore(gameId);
+  refreshScores(gameId, scoresList);
   displayScore(scoresList);
-  refreshBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.location.reload();
-  });
 };
 main();
