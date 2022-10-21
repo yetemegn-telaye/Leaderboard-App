@@ -10,12 +10,11 @@ body {
   color: aliceblue;
   padding: 50px;
   font-weight: bold;
-  background: rgb(191,146,201);
-  background: linear-gradient(90deg, rgba(191,146,201,1) 0%, rgba(179,231,241,1) 100%);
+  background: rgb(191, 146, 201);
+  background: linear-gradient(90deg, rgba(191, 146, 201, 1) 0%, rgba(179, 231, 241, 1) 100%);
 }
 
 h1 {
-  
   font-size: 50px;
 }
 
@@ -75,7 +74,7 @@ input {
 }
 
 .btn:hover {
-  color:rgb(198, 97, 14);
+  color: rgb(198, 97, 14);
   border: 2px solid rgb(198, 97, 14);
 }
 
