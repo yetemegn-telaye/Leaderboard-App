@@ -1,36 +1,34 @@
 import './style.css';
 import {
-  createGame, refreshScores, submitScore, displayScore,
+ refreshScores, submitScore, displayScore,
 } from './modules/add-display.js';
-import { getGames } from './modules/Game.js';
+//import { getGames } from './modules/Game.js';
 
 const main = () => {
-  let gameId= "";
-  
-  let scoresList = [];
+  // let scoresList = [];
 
-  if (localStorage.getItem('scorelist') === null) {
-    localStorage.setItem('scorelist', JSON.stringify(scoresList));
-  } else {
-    scoresList = JSON.parse(localStorage.getItem('scorelist'));
-  }
+  // if (localStorage.getItem('scorelist') === null) {
+  //   localStorage.setItem('scorelist', JSON.stringify(scoresList));
+  // } else {
+  //   scoresList = JSON.parse(localStorage.getItem('scorelist'));
+  // }
 
-  createGame();
+  //createGame();
 
-  const saveGame = async()=>{
-    try{
-      gameId = await getGames();
-    }
-    catch(e){
-      console.log("Error" + e);
-    }
-    submitScore(gameId);
-    refreshScores(gameId,scoresList);
+  // const saveGame = async()=>{
+  //   try{
+  //     gameId = await getGames();
+  //   }
+  //   catch(e){
+  //     console.log("Error" + e);
+  //   }
     
-  }
-  saveGame();
-  // submitScore(gameId);
-  // refreshScores(gameId, scoresList);
-  displayScore(scoresList);
+    
+  // }
+  // saveGame();
+
+  submitScore();
+  refreshScores();
+  
 };
 main();

@@ -1,24 +1,30 @@
-import { addGame,getGames } from './Game.js';
+//import { addGame } from './Game.js';
 
 // Create a new game using the leaderboard api
-const createGame = async () => {
-  const response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/', {
-    method: 'POST',
-    body: JSON.stringify({
-      name: 'New Chess Game',
-    }),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    },
-  });
-  const gameId = (await response.json()).result.substr(14, 20);
-  return gameId;
-};
+// const createGame = async () => {
+//   const response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/', {
+//     method: 'POST',
+//     body: JSON.stringify({
+//       name: 'New Chess Game',
+//     }),
+//     headers: {
+//       'Content-type': 'application/json; charset=UTF-8',
+//     },
+//   });
+//   const gameId = (await response.json()).result.substr(14, 20);
+//   return gameId;
+// };
+// addGame(createGame());
 
-addGame(createGame());
+const apiKey = '3MROiN3gbdAG1ahXT7Zl';
+const baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games';
+
+
+
+
 // Add score to a game to your api
-const addScores = async (gameId, name, score) => {
-  const response = await fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${gameId}/scores`, {
+const addScores = async ( name, score) => {
+  const response = await fetch(`${baseUrl}/${apiKey}/scores`, {
     method: 'POST',
     body: JSON.stringify({
       user: name,
@@ -31,29 +37,32 @@ const addScores = async (gameId, name, score) => {
   await response.json();
 };
 
-const saveScore = (scores, scoresList) => {
-  scoresList = scores;
-  localStorage.setItem('scorelist', JSON.stringify(scoresList));
+const saveScore = (scores) => {
+ // scoresList = scores;
+  //localStorage.setItem('scorelist', JSON.stringify(scoresList));
+ 
+  displayScore(scores);
   window.location.reload();
+  
 };
 
 // Get scores of a game from api
-const getScores = async (gameId, scoresList) => {
+const getScores = async () => {
   
-  const response = await fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${gameId}/scores`);
+  const response = await fetch(`${baseUrl}/${apiKey}/scores`);
   const scores = (await response.json()).result;
   console.log(scores);
-  saveScore(scores, scoresList);
+  saveScore(scores);
 };
 
 // Submit score on submit button clicked
-const submitScore = (gameId) => {
+const submitScore = () => {
   const nameInput = document.querySelector('#input-name');
   const scoreInput = document.querySelector('#input-score');
   const submitBtn = document.querySelector('.btn-submit');
   submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    addScores(gameId, nameInput.value, scoreInput.value);
+    addScores(nameInput.value, scoreInput.value);
     nameInput.value = null;
     scoreInput.value = null;
   });
@@ -71,13 +80,14 @@ const displayScore = (scoresList) => {
 };
 
 // get Scores of a game on refresh button clicked
-const refreshScores = (gameId, scoresList) => {
+const refreshScores = () => {
   const refreshBtn = document.querySelector('.btn-refresh');
   refreshBtn.addEventListener('click', () => {
-    getScores(gameId, scoresList);
+   getScores();
+  
   });
 };
 
 export {
-  createGame, refreshScores, submitScore, displayScore,
+  refreshScores, submitScore, displayScore,
 };
