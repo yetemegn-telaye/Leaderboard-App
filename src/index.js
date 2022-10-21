@@ -5,7 +5,8 @@ import {
 import { getGames } from './modules/Game.js';
 
 const main = () => {
-  const gameId = getGames();
+  let gameId= "";
+  
   let scoresList = [];
 
   if (localStorage.getItem('scorelist') === null) {
@@ -15,8 +16,21 @@ const main = () => {
   }
 
   createGame();
-  submitScore(gameId);
-  refreshScores(gameId, scoresList);
+
+  const saveGame = async()=>{
+    try{
+      gameId = await getGames();
+    }
+    catch(e){
+      console.log("Error" + e);
+    }
+    submitScore(gameId);
+    refreshScores(gameId,scoresList);
+    
+  }
+  saveGame();
+  // submitScore(gameId);
+  // refreshScores(gameId, scoresList);
   displayScore(scoresList);
 };
 main();

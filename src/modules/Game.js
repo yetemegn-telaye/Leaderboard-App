@@ -3,14 +3,14 @@ class Game {
     this.id = id;
   }
 }
-
+const game = new Game();
 const addGame = (gameId) => {
-  const game = new Game();
+  
   game.id = gameId;
 };
 
 const getGames = () => {
-  const game = new Game();
+  
   return game.id;
 };
 

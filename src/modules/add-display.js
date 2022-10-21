@@ -1,4 +1,4 @@
-import { addGame } from './Game.js';
+import { addGame,getGames } from './Game.js';
 
 // Create a new game using the leaderboard api
 const createGame = async () => {
@@ -12,9 +12,10 @@ const createGame = async () => {
     },
   });
   const gameId = (await response.json()).result.substr(14, 20);
-  addGame(gameId);
+  return gameId;
 };
 
+addGame(createGame());
 // Add score to a game to your api
 const addScores = async (gameId, name, score) => {
   const response = await fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${gameId}/scores`, {
@@ -38,8 +39,10 @@ const saveScore = (scores, scoresList) => {
 
 // Get scores of a game from api
 const getScores = async (gameId, scoresList) => {
+  
   const response = await fetch(`https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${gameId}/scores`);
   const scores = (await response.json()).result;
+  console.log(scores);
   saveScore(scores, scoresList);
 };
 
