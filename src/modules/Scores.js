@@ -1,16 +1,13 @@
 class Scores {
   constructor(scores) {
-    this.scores=scores;
+    this.scores = scores;
   }
 }
 const score = new Scores();
 const addScoreList = (scores) => {
-  
-  score.scores= scores;
+  score.scores = scores;
 };
 
-const getScoreList = () => {
-  return score.scores;
-};
+const getScoreList = () => score.scores;
 
-export { addScoreList, getScoreList};
+export { addScoreList, getScoreList };

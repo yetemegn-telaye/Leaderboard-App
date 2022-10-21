@@ -1,14 +1,10 @@
-import { addScoreList } from "./Scores.js";
-
+import { addScoreList } from './Scores.js';
 
 const apiKey = '3MROiN3gbdAG1ahXT7Zl';
 const baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games';
 
-
-
-
 // Add score to a game to your api
-const addScores = async ( name, score) => {
+const addScores = async (name, score) => {
   const response = await fetch(`${baseUrl}/${apiKey}/scores`, {
     method: 'POST',
     body: JSON.stringify({
@@ -22,17 +18,14 @@ const addScores = async ( name, score) => {
   await response.json();
 };
 
-
 // Get scores of a game from api
 const getScores = async () => {
-  
   const response = await fetch(`${baseUrl}/${apiKey}/scores`);
   const scores = (await response.json()).result;
-  
+
   return scores;
 };
 addScoreList(getScores());
-
 
 // Submit score on submit button clicked
 const submitScore = () => {
@@ -62,11 +55,11 @@ const displayScore = (scoresList) => {
 const refreshScores = () => {
   const refreshBtn = document.querySelector('.btn-refresh');
   refreshBtn.addEventListener('click', () => {
-   getScores();
-   document.location.reload();
+    getScores();
+    document.location.reload();
   });
 };
 
 export {
-  refreshScores, submitScore,getScores , displayScore,
+  refreshScores, submitScore, getScores, displayScore,
 };
