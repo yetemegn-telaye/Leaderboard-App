@@ -3,11 +3,19 @@
   margin: 0;
   box-sizing: border-box;
   width: 100%;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 body {
+  color: aliceblue;
   padding: 50px;
   font-weight: bold;
+  background: rgb(191, 146, 201);
+  background: linear-gradient(90deg, rgba(191, 146, 201, 1) 0%, rgba(179, 231, 241, 1) 100%);
+}
+
+h1 {
+  font-size: 50px;
 }
 
 main {
@@ -37,6 +45,7 @@ main {
 
 tr:nth-child(even) {
   background-color: #ddd;
+  color: purple;
 }
 
 td {
@@ -51,15 +60,22 @@ td {
 
 input {
   padding: 10px;
-  border: 2px solid black;
+  border: 2px solid rgb(51, 45, 122);
+  border-radius: 5px;
 }
 
 .btn {
-  border: 2px solid black;
+  border: 2px solid rgb(51, 45, 122);
+  border-radius: 5px;
   background-color: white;
   padding: 5px;
   width: 40%;
   font-weight: bold;
+}
+
+.btn:hover {
+  color: rgb(198, 97, 14);
+  border: 2px solid rgb(198, 97, 14);
 }
 
 .btn-submit {
