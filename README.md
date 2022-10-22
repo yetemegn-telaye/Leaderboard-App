@@ -38,7 +38,7 @@ npm install
 ## Run
 ```bash
 1. To run this project :
-npm run 
+npm start
 2. open the urs localhost:8080 on your browser
 
 ```
